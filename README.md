@@ -47,9 +47,11 @@ second, with the classic early-warning magnitude (peak P-wave displacement, Kuyu
 using open recordings within 250 km. The replay is generous to the classic method: P waves are
 picked near their theoretical arrival and data arrive with no delay.
 
-First result, the 2015 Illapel, Chile earthquake (USGS magnitude 8.3), five stations within 250 km:
-the classic estimate stays near magnitude 6.0 throughout. Results for all 28 earthquakes will be
-published in `results/phase1/` from a public Kaggle run.
+Control: on the 2014 South Napa, California earthquake (magnitude 6.0), where the classic method is
+known to work, it gives 5.9 four seconds after the origin and 5.95 at the end, within 0.3
+throughout. On the 2015 Illapel, Chile earthquake (magnitude 8.3), it stays near 6.2. Results for
+all 28 earthquakes and the control earthquakes will be published in `results/phase1/` from a
+public Kaggle run.
 
 ## What Larzavan will not do
 

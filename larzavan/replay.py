@@ -21,7 +21,7 @@ MIN_STATIONS = 1
 @dataclass
 class Snapshot:
     time_s: float  # after origin
-    magnitude: float | None  # mean of the station magnitudes
+    magnitude: float | None  # median of the station magnitudes
     n_stations: int
     station_magnitudes: list[float]
 
@@ -44,6 +44,6 @@ def replay(records: list[StationRecord], end_s: float = 180.0, step_s: float = 1
             )
             if pd is not None and pd > 0:
                 mags.append(magnitude_from_pd(pd, record.distance_km))
-        magnitude = float(np.mean(mags)) if len(mags) >= MIN_STATIONS else None
+        magnitude = float(np.median(mags)) if len(mags) >= MIN_STATIONS else None
         snapshots.append(Snapshot(float(now), magnitude, len(mags), [round(m, 3) for m in mags]))
     return snapshots

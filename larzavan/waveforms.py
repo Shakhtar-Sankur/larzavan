@@ -20,8 +20,11 @@ from larzavan.catalog import Event
 from larzavan.picker import pick_p
 
 KM_PER_DEG = 111.19
-# Vertical components only: accelerometers first, then broadband and short-period velocity sensors.
-CHANNEL_PRIORITIES = ["HN[Z]", "EN[Z]", "HL[Z]", "HH[Z]", "BH[Z]", "EH[Z]", "SH[Z]"]
+# Vertical components only: accelerometers first, then broadband velocity sensors. Short-period
+# sensors (EH, SH) are left out: their response falls off below about 1 Hz, so the displacement
+# integrated from them misses the long periods that peak P-wave displacement measures.
+CHANNEL_PRIORITIES = ["HN[Z]", "EN[Z]", "HL[Z]", "HH[Z]", "BH[Z]"]
+ACCEPTED_BAND_INSTRUMENT = ("HN", "EN", "HL", "HH", "BH")
 LOCATION_PRIORITIES = ["", "00", "10", "20", "01", "02", "30", "40"]
 
 
@@ -99,6 +102,8 @@ def load_records(event: Event, wave_dir: Path, sta_dir: Path, max_km: float = 25
                 sensitivity = inventory.get_response(trace.id, trace.stats.starttime).instrument_sensitivity
             except Exception:
                 continue  # no usable metadata for this channel
+            if trace.stats.channel[:2] not in ACCEPTED_BAND_INSTRUMENT:
+                continue
             units = (sensitivity.input_units or "").upper()
             if units not in ("M/S", "M/S**2") or not sensitivity.value:
                 continue
