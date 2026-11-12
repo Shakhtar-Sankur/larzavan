@@ -1,14 +1,33 @@
 # Larzavan
 
-**Open, global earthquake early warning for the largest earthquakes.**
+**Larzavan** is an open, global earthquake early-warning system for the largest earthquakes.
+Its engine is **Zelzana**, which estimates how big an earthquake is, second by second, while it
+is still happening.
 
-Its magnitude engine is **Zelzana**.
+## Early warning, not prediction
+
+Nobody can predict earthquakes: no method has ever reliably forecast one, and Larzavan does not
+try. Larzavan starts the moment an earthquake begins. The earthquake's waves travel through the ground at a few
+kilometres per second, while a warning travels at the speed of light. That gap saves lives in
+three ways:
+
+1. **Seconds before the shaking.** Cities tens to hundreds of kilometres away can get several to
+   tens of seconds of warning: enough to stop trains and lifts, halt surgery, shut gas valves and
+   get people under tables. Japan's warning system slows its bullet trains this way.
+2. **Minutes before a tsunami, the biggest life-saver.** Tsunami waves often reach the nearest
+   coasts 15 to 40 minutes after a great earthquake. How big the warning is, and how many people
+   are told to leave, depends on getting the magnitude right in the first minutes.
+3. **The first hour after.** Knowing where the shaking was worst sends rescuers to the right
+   places first.
+
+## The problem Larzavan solves
 
 Early-warning systems measure an earthquake in its first seconds. For the largest earthquakes,
 the ones that cause tsunamis, those first seconds are not enough: the rupture is still growing,
 and the magnitude estimate stalls far below the true size. Japan's first estimate for the 2011
-Tohoku earthquake was 7.9; it was a 9.0. Larzavan is being built to give a correct magnitude, with
-an honest uncertainty, for earthquakes of magnitude 7.5 to 9 and above, worldwide, from open data.
+Tohoku earthquake was 7.9; it was a 9.0, so the first tsunami warning was too low. Zelzana is
+being built to give a correct magnitude, with an honest uncertainty, for earthquakes of magnitude
+7.5 to 9 and above, worldwide, from open data.
 
 ## Status: Phase 1, measuring the problem
 
@@ -23,7 +42,7 @@ published in `results/phase1/` from a public Kaggle run.
 
 ## What Larzavan will not do
 
-- **No prediction.** Larzavan describes an earthquake that has already started.
+- **No prediction.** Larzavan warns about an earthquake that has already started.
 - **No public alerts of its own.** Alerts reach people through each country's agency; Larzavan
   publishes research estimates and a public scorecard.
 - **No unverifiable claims.** Every number comes from public code, public data and a public run.
