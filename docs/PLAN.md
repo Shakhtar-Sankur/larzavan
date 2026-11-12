@@ -1,7 +1,11 @@
 # Larzavan: the plan
 
-Larzavan is an open, global early-warning system for the largest earthquakes. Zelzana is its
-engine. This plan is maintained with the code; every claim in it is a target until a public run
+Larzavan is an open, global early-warning system for every damaging earthquake, from magnitude 5
+to 9 and above, with a capability today's systems lack for the largest ones. Zelzana is its engine.
+
+For magnitude 5 to 7 the magnitude methods already work; warnings are limited by speed, by the
+blind zone near the epicentre and by sensor density near cities. For magnitude 7.5 and above the
+magnitude itself stalls. Larzavan addresses both. This plan is maintained with the code; every claim in it is a target until a public run
 shows it.
 
 ## 1. The limits we break, and the ones physics won't let anyone break
@@ -25,6 +29,7 @@ shows it.
 | Methods and track records hard to inspect | No shared megaquake test | Code, data and every estimate public |
 | One number, no uncertainty | Agencies guess how far to trust it | "8.6 to 9.1, 90% confidence, still growing" |
 | Tsunami threat built on an underestimated magnitude | Tohoku's first tsunami warning was too low | Tsunami threat from the corrected source, computed on GPU |
+| Moderate earthquakes under cities leave little or no warning | Bam 2003 (M6.6), Christchurch 2011 (M6.2) | Fastest detection, on-site warning, dense low-cost sensors near cities |
 | Sparse sensors in poorer regions | Large gaps in Africa, Central Asia and the Pacific islands | Citizen seismographs, low-cost sensor designs, fibre and undersea-cable partners |
 
 ## 3. What Zelzana is made of
@@ -32,6 +37,7 @@ shows it.
 | Layer | What it does | Advanced element |
 |---|---|---|
 | 1. Intake | Live (SeedLink) and archived (FDSN) data from every open station; more than 5,000 broadband stations in 217 networks through IRIS alone | Per-packet latency accounting; station health checks that reject clipped, dead or spoofed channels |
+| 2a. On-site warning | Each sensor warns its own location from the first seconds of P waves, without waiting for a network solution | Shrinks the blind zone for moderate earthquakes under cities |
 | 2. Detection and location | Machine-learning phase pickers and associators | Batched on one GPU for every station on Earth at once; handles overlapping earthquakes and aftershocks |
 | 3. Seismic magnitude | Fast magnitude from the first seconds of P waves | Classic baseline (Phase 1), then learned estimators calibrated per region |
 | 4. Gravity layer (Kshana) | Deep learning on prompt elasto-gravity signals, which travel at the speed of light | Trained on simulated signals with real noise; network-wide stacking to push below magnitude 8 |
@@ -46,6 +52,7 @@ shows it.
 
 | Tier | Earthquakes since 2000 | What it tests |
 |---|---|---|
+| 0 | 44,290 (M5 to 6) | Detection speed, location, false alarms, on-site warning |
 | 1 | 4,001 (M6+) | Detection, location, false alarms |
 | 2 | 400 (M7+) | Magnitude speed and accuracy |
 | 3 | 144 (M7.5+) | Megaquake magnitude and rupture tracking |

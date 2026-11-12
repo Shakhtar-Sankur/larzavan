@@ -1,8 +1,8 @@
 # Larzavan
 
-**Larzavan** is an open, global earthquake early-warning system for the largest earthquakes.
-Its engine is **Zelzana**, which estimates how big an earthquake is, second by second, while it
-is still happening.
+**Larzavan** is an open, global earthquake early-warning system for every damaging earthquake,
+from magnitude 5 to 9 and above. Its engine is **Zelzana**, which estimates how big an earthquake
+is, second by second, while it is still happening.
 
 ## Early warning, not prediction
 
@@ -20,7 +20,18 @@ three ways:
 3. **The first hour after.** Knowing where the shaking was worst sends rescuers to the right
    places first.
 
-## The problem Larzavan solves
+## Every damaging earthquake
+
+Moderate earthquakes cause havoc too, and they are far more frequent: the 2003 Bam earthquake
+(magnitude 6.6) killed about 26,000 people, and the 2011 Christchurch earthquake (6.2) killed 185.
+Since 2000 the USGS has recorded 44,290 earthquakes of magnitude 5 to 6, 3,601 of 6 to 7 and 400
+of 7 and above. For magnitude 5 to 7, today's magnitude methods work well; what limits warnings is
+speed, the blind zone close to the epicentre where shaking arrives before any alert, and too few
+sensors near cities. Larzavan answers with the fastest possible detection, dense low-cost and
+citizen sensors near cities, on-site warning (each sensor warns its own location from the first
+P wave), and shaking forecasts for each city.
+
+## The problem only Larzavan takes on: the largest earthquakes
 
 Early-warning systems measure an earthquake in its first seconds. For the largest earthquakes,
 the ones that cause tsunamis, those first seconds are not enough: the rupture is still growing,
