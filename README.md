@@ -2,8 +2,7 @@
 
 **Open, global earthquake early warning for the largest earthquakes.**
 
-*Larzavan*, from the Persian *larzeh* (tremor) and *-vān* (keeper): the guardian of tremors.
-Its magnitude engine is **Zelzana**, from *zelzeleh* (earthquake).
+Its magnitude engine is **Zelzana**.
 
 Early-warning systems measure an earthquake in its first seconds. For the largest earthquakes,
 the ones that cause tsunamis, those first seconds are not enough: the rupture is still growing,
