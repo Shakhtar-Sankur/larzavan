@@ -1,0 +1,19 @@
+[project]
+name = "larzavan"
+version = "0.1.0"
+description = "Open, global earthquake early warning for the largest earthquakes"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Sankur Kundu" }]
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "obspy>=1.4", "matplotlib"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
