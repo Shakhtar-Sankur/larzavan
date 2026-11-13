@@ -40,7 +40,7 @@ Tohoku earthquake was 7.9; it was a 9.0, so the first tsunami warning was too lo
 being built to give a correct magnitude, with an honest uncertainty, for earthquakes of magnitude
 7.5 to 9 and above, worldwide, from open data.
 
-## Status: Phase 1 complete, measuring the problem
+## Phase 1 (complete): measuring the problem
 
 Phase 1 replays every magnitude 8+ earthquake since 2000 (28 in the USGS catalogue) second by
 second, with the classic early-warning magnitude (peak P-wave displacement, Kuyuk & Allen 2013),
@@ -65,7 +65,30 @@ Results for all 28 earthquakes, from a public Kaggle run, are in
 These are the two problems Larzavan is built to solve: the magnitude stalls on the largest
 earthquakes, and open sensors are missing where they strike.
 
-Phase 1 is complete. Next, Phase 2: magnitude from GNSS ground displacement, which does not stall.
+## Phase 2 (complete): a magnitude that does not stall
+
+Phase 2 replays the magnitude from GNSS peak ground displacement, second by second, on the 29
+earthquakes (magnitude 6.0 to 9.0) of the open Ruhl et al. (2019) high-rate GNSS database. Each
+earthquake is scored with coefficients refitted on the other 28, so the method never sees the
+earthquake it is tested on. Results, from a public Kaggle run, are in
+[`results/phase2/summary.md`](results/phase2/summary.md):
+
+| Earthquake | Magnitude | Classic seismic (Phase 1) | GNSS, held out (Phase 2) |
+|---|---|---|---|
+| Tohoku 2011 | 9.0 | no open station | 8.82 |
+| Maule 2010 | 8.8 | no open station | 8.80 |
+| Illapel 2015 | 8.3 | 6.21 | 7.54 |
+| Tehuantepec 2017 | 8.2 | 6.59 | 7.97 |
+| Iquique 2014 | 8.1 | 5.97 | 7.54 |
+
+- GNSS closes most of the gap on the largest earthquakes: Tohoku and Maule end within 0.2.
+- It is not enough on its own: some magnitude 8 earthquakes still end 0.5 to 0.8 low, it takes
+  one to four minutes to settle, and on moderate earthquakes such as Napa 2014 the classic method
+  is faster and more accurate. Over all 29, 15 end within 0.3, with a mean error of 0.31.
+- The replay uses post-processed positions with no delay, so it is generous to GNSS.
+
+Next, Phase 3: synthetic megaquakes, so later layers can learn from far more large earthquakes
+than nature has recorded.
 
 ## What Larzavan will not do
 
@@ -81,10 +104,12 @@ pip install -e ".[dev]"
 pytest
 python scripts/phase1_megaquakes.py --data-dir data --out-dir results/phase1
 python scripts/phase1_megaquakes.py --only us20003k7a --providers IRIS   # one earthquake
+python scripts/phase2_gnss.py --data-dir data --out-dir results/phase2
 ```
 
-Data come from the open FDSN data centres (IRIS/EarthScope, GEOFON, ORFEUS, RESIF, INGV and
-others) through ObsPy, and the catalogue from the USGS.
+Seismic data come from the open FDSN data centres (IRIS/EarthScope, GEOFON, ORFEUS, RESIF, INGV
+and others) through ObsPy, and the catalogue from the USGS. GNSS data come from the Ruhl et al.
+(2019) database on Zenodo (CC BY-SA 4.0), downloaded on first use.
 
 ## Plan
 

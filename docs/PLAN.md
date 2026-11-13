@@ -150,7 +150,7 @@ Every phase ends in something public.
    where it falls short. *Done:* `results/phase1/`.
 2. **GNSS layer.** Peak-displacement magnitude on the 29 earthquakes of the Ruhl et al. database,
    with coefficients refitted without each earthquake in turn; show how much sooner the
-   magnitude becomes correct.
+   magnitude becomes correct. *Done:* `results/phase2/`.
 3. **Synthetic megaquakes.** Generate the training set of simulated ruptures and signals.
 4. **Gravity layer (Kshana).** Train the model; register for free research access to Japan's NIED
    data; invite the PEGSNet authors (Géoazur, France) to collaborate.
