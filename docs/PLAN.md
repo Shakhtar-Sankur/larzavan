@@ -147,7 +147,7 @@ identifier, so other systems can be measured against it.
 Every phase ends in something public.
 
 1. **Proof of the problem.** Replay the 28 M8+ earthquakes with the classic method and publish
-   where it falls short. *In progress.*
+   where it falls short. *Done:* `results/phase1/`.
 2. **GNSS layer.** Peak-displacement magnitude on the 29 earthquakes of the Ruhl et al. database,
    with coefficients refitted without each earthquake in turn; show how much sooner the
    magnitude becomes correct.

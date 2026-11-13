@@ -40,16 +40,18 @@ Tohoku earthquake was 7.9; it was a 9.0, so the first tsunami warning was too lo
 being built to give a correct magnitude, with an honest uncertainty, for earthquakes of magnitude
 7.5 to 9 and above, worldwide, from open data.
 
-## Status: Phase 1, measuring the problem
+## Status: Phase 1 complete, measuring the problem
 
 Phase 1 replays every magnitude 8+ earthquake since 2000 (28 in the USGS catalogue) second by
 second, with the classic early-warning magnitude (peak P-wave displacement, Kuyuk & Allen 2013),
 using open recordings within 250 km. The replay is generous to the classic method: P waves are
 picked near their theoretical arrival and data arrive with no delay.
 
-Control: on the 2014 South Napa, California earthquake (magnitude 6.0), where the classic method is
-known to work, it gives 5.9 four seconds after the origin and 5.95 at the end, within 0.3
-throughout.
+Controls, where the classic method is known to work
+([`results/phase1/controls.md`](results/phase1/controls.md)): on the 2014 South Napa, California
+earthquake (magnitude 6.0) it gives 5.90 four seconds after the origin and stays within 0.3; on the
+2019 Ridgecrest foreshock (magnitude 6.4) it ends at 6.20. On the Ridgecrest mainshock (magnitude
+7.1), with 78 stations, it already stalls at 6.46.
 
 Results for all 28 earthquakes, from a public Kaggle run, are in
 [`results/phase1/summary.md`](results/phase1/summary.md):
@@ -61,8 +63,9 @@ Results for all 28 earthquakes, from a public Kaggle run, are in
   give 5.97.
 
 These are the two problems Larzavan is built to solve: the magnitude stalls on the largest
-earthquakes, and open sensors are missing where they strike. Results for the control earthquakes
-(Napa 2014 and Ridgecrest 2019) will be added from the next run.
+earthquakes, and open sensors are missing where they strike.
+
+Phase 1 is complete. Next, Phase 2: magnitude from GNSS ground displacement, which does not stall.
 
 ## What Larzavan will not do
 
