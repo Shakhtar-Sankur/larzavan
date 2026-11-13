@@ -49,9 +49,20 @@ picked near their theoretical arrival and data arrive with no delay.
 
 Control: on the 2014 South Napa, California earthquake (magnitude 6.0), where the classic method is
 known to work, it gives 5.9 four seconds after the origin and 5.95 at the end, within 0.3
-throughout. On the 2015 Illapel, Chile earthquake (magnitude 8.3), it stays near 6.2. Results for
-all 28 earthquakes and the control earthquakes will be published in `results/phase1/` from a
-public Kaggle run.
+throughout.
+
+Results for all 28 earthquakes, from a public Kaggle run, are in
+[`results/phase1/summary.md`](results/phase1/summary.md):
+
+- Only 8 of the 28 have any open recording within 250 km. Sumatra 2004, Maule 2010 and Tohoku
+  2011 have none.
+- On all 8, the classic magnitude ends between 5.5 and 6.9 for earthquakes of magnitude 8.1 to
+  8.8, and is never within 0.3. On the 2014 Iquique, Chile earthquake (magnitude 8.2), 20 stations
+  give 5.97.
+
+These are the two problems Larzavan is built to solve: the magnitude stalls on the largest
+earthquakes, and open sensors are missing where they strike. Results for the control earthquakes
+(Napa 2014 and Ridgecrest 2019) will be added from the next run.
 
 ## What Larzavan will not do
 

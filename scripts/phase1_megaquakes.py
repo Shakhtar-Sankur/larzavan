@@ -25,6 +25,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--min-magnitude", type=float, default=8.0)
     ap.add_argument("--start", default="2000-01-01")
+    ap.add_argument("--end", default=None, help="last date to include; default: today")
     ap.add_argument("--max-km", type=float, default=250.0)
     ap.add_argument("--data-dir", type=Path, default=Path("data"))
     ap.add_argument("--out-dir", type=Path, default=Path("results/phase1"))
@@ -34,10 +35,11 @@ def main() -> int:
     args = ap.parse_args()
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    events = fetch_events(args.min_magnitude, args.start)
+    events = fetch_events(args.min_magnitude, args.start, args.end)
     if args.only:
         events = [e for e in events if e.id in args.only]
-    print(f"{len(events)} earthquakes of M{args.min_magnitude}+ since {args.start}", flush=True)
+    until = f" until {args.end}" if args.end else ""
+    print(f"{len(events)} earthquakes of M{args.min_magnitude}+ since {args.start}{until}", flush=True)
 
     rows = []
     for event in events:
