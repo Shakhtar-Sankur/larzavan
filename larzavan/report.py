@@ -10,13 +10,20 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 
-def event_chart(path: Path, title: str, true_magnitude: float, times: list[float], magnitudes: list[float | None]):
+def event_chart(
+    path: Path,
+    title: str,
+    true_magnitude: float,
+    times: list[float],
+    magnitudes: list[float | None],
+    label: str = "classic Pd magnitude",
+):
     fig, ax = plt.subplots(figsize=(7, 3.6))
     ax.axhline(true_magnitude, color="#222222", lw=1.2, label=f"USGS magnitude {true_magnitude:.1f}")
     ax.axhspan(true_magnitude - 0.3, true_magnitude + 0.3, color="#cccccc", alpha=0.5, label="within 0.3")
     pts = [(t, m) for t, m in zip(times, magnitudes) if m is not None]
     if pts:
-        ax.plot([p[0] for p in pts], [p[1] for p in pts], color="#c0392b", lw=1.6, label="classic Pd magnitude")
+        ax.plot([p[0] for p in pts], [p[1] for p in pts], color="#c0392b", lw=1.6, label=label)
     ax.set_xlabel("seconds after origin")
     ax.set_ylabel("magnitude")
     ax.set_title(title, fontsize=10)
@@ -26,17 +33,22 @@ def event_chart(path: Path, title: str, true_magnitude: float, times: list[float
     plt.close(fig)
 
 
-def summary_chart(path: Path, rows: list[dict]):
+def summary_chart(
+    path: Path,
+    rows: list[dict],
+    limits: tuple[float, float, float] = (7.5, 9.3, 5.5),
+    ylabel: str = "classic Pd magnitude, end of replay",
+):
     pts = [(r["true_magnitude"], r["final_estimate"]) for r in rows if r["final_estimate"] is not None]
     fig, ax = plt.subplots(figsize=(5, 5))
     if pts:
         ax.scatter([p[0] for p in pts], [p[1] for p in pts], color="#c0392b", zorder=3)
-    lo, hi = 7.5, 9.3
+    lo, hi, ylo = limits
     ax.plot([lo, hi], [lo, hi], color="#222222", lw=1, label="estimate = true magnitude")
     ax.set_xlim(lo, hi)
-    ax.set_ylim(5.5, hi)
+    ax.set_ylim(ylo, hi)
     ax.set_xlabel("USGS magnitude")
-    ax.set_ylabel("classic Pd magnitude, end of replay")
+    ax.set_ylabel(ylabel)
     ax.legend(fontsize=8)
     fig.tight_layout()
     fig.savefig(path, dpi=130)
